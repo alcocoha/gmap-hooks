@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Map from './components/Map';
+import DirectionsForm from './components/DirectionsForm';
 
 function App() {
+
+  const [coordinates, saveCoordinates] = useState();
+
+  const getCoordinates = (data = {}) => {
+    console.log('entro --- getCoordinates', data)
+    saveCoordinates(coordinates);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <DirectionsForm getCoordinates={getCoordinates}/>
+      <Map 
+        coordinates = {coordinates}
+        mapParams={
+          {
+            center:  { lat: 40.771, lng: -73.974 },
+            zoom: 13
+          }
+        }
+      />
     </div>
   );
 }
 
 export default App;
+   
