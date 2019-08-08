@@ -4,7 +4,8 @@ const DirectionsForm = ({getCoordinates}) => {
 
     const [formData, saveFormData] = useState({
         origin: '',
-        destination: ''
+        destination: '',
+        mode: '',
     });
 
     const handlerChange = e => {
@@ -30,6 +31,13 @@ const DirectionsForm = ({getCoordinates}) => {
                 <input type="text" name="origin" value={formData.origin} onChange={handlerChange}/><br/>
                 Destino:<br/>
                 <input type="text" name="destination" value={formData.destination} onChange={handlerChange}/><br/>
+                <select name="mode" onChange={handlerChange}>
+                    <option value="DRIVING">Driving</option>
+                    <option value="WALKING">Walking</option>
+                    <option value="BICYCLING">Bicycling</option>
+                    <option value="TRANSIT">Transit</option>
+                </select>
+                <br/>
                 <input type="submit" value="Buscar ruta"/>
             </form>
         </div>

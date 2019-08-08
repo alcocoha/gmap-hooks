@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Map from './components/Map';
 import DirectionsForm from './components/DirectionsForm';
 
 function App() {
 
-  const [coordinates, saveCoordinates] = useState();
+  const [coordinates, saveCoordinates] = useState({});
 
   const getCoordinates = (data = {}) => {
     console.log('entro --- getCoordinates', data)
-    saveCoordinates(coordinates);
+    saveCoordinates(data);
+    console.log('coordinates---1', coordinates)
   }
 
   return (
