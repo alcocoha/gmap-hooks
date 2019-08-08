@@ -2,19 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { loadScript } from '../../utils';
 import { GOOGLE_API_URL } from '../../utils/appConfig';
 
-
-// origin: {"lat": 37.77, "lng": -122.447},  // Haight.
-//       destination: {"lat": 37.768, "lng": -122.511},  // Ocean Beach.
-
-
-//       19.386302, -99.165098
-
-//       19.361638, -99.115119
-
-
-//       {"lat": 19.386302, "lng": -99.165098}
-//       {"lat": 19.361638, "lng": -99.115119}
-
 const Map = (props) => {
 
   const { mapParams, coordinates } = props;
@@ -34,16 +21,32 @@ const Map = (props) => {
 
     if(coordinates.origin && coordinates.destination) {
 
-      console.log('JSON.parse(coordinates.origin)', JSON.parse(coordinates.origin))
-      console.log('JSON.parse(coordinates.destination)', JSON.parse(coordinates.destination))
+      console.log('JSON.parse(coordinates.origin)', coordinates.origin)
+      console.log('JSON.parse(coordinates.destination)', coordinates.destination)
+      // let geocoder = new window.google.maps.Geocoder();
+
+      // const directionArray = [coordinates.origin, coordinates.destination];
+
+      // for (let i = 0; i < directionArray.length; i++) {
+      //   console.log('directionArray[i]', i, directionArray[i])
+      //   geocoder.geocode({'address': directionArray[i]}, (results, status)=>{
+      //     console.log('--------results', results)
+      //     console.log('--------foooooooo', results[0].geometry.location.lat())
+      //     console.log('--------status', status);
+      //   })
+        
+      // }
+      
       
       directionsService.route({
   
-        origin: JSON.parse(coordinates.origin),
-        destination: JSON.parse(coordinates.destination),
+        origin: coordinates.origin,
+        destination: coordinates.destination,
         travelMode: window.google.maps.TravelMode[coordinates.mode]
   
       }, function(response, status) {
+        console.log('response', response)
+        console.log('status', status)
         if (status == 'OK') {
           directionsDisplay.setDirections(response);
         } else {
@@ -52,14 +55,13 @@ const Map = (props) => {
       });
     
     
-    
-    
     }
 
   }
 
   useEffect(() => {
-  console.log('props', props)
+    
+    console.log('props', props)
 
     if(!window.google){
       console.log('useEffect----------1')

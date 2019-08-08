@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { GOOGLE_API_KEY } from '../../utils/appConfig';
 
 const DirectionsForm = ({getCoordinates}) => {
 
@@ -17,9 +19,16 @@ const DirectionsForm = ({getCoordinates}) => {
         console.log('formData', formData)
     }
 
-    const sendCoordinates = e => {
+    const sendCoordinates = async (e) => {
         e.preventDefault();
         getCoordinates(formData)
+        // const url = `https://maps.googleapis.com/maps/api/geocode/json`;
+        // console.log('destination', formData.destination)
+
+        // const latlngDestination = await axios.get( url, { params: { address : formData.destination, key : GOOGLE_API_KEY }});
+        // console.log('latlngDestination', latlngDestination.data.results)
+        // const latlngOrigin = await axios.get( url, { params: { address : formData.origin, key : GOOGLE_API_KEY }});
+        // console.log('latlngOrigin', latlngOrigin.data.results)
     }
 
     return (
