@@ -21,7 +21,9 @@ function App() {
         mapParams={
           {
             center:  { lat: 40.771, lng: -73.974 },
-            zoom: 13
+            zoom: 13,
+
+            // styles: 
           }
         }
       />
